@@ -1,0 +1,32 @@
+_base_: base.yaml
+
+task: anomaly_detection
+
+models:
+  - name: isolation_forest
+    type: sklearn
+    params:
+      n_estimators: 400
+      max_samples: auto
+      contamination: 0.005
+  - name: autoencoder
+    type: pytorch
+    params:
+      input_dim: null  # inferred at runtime
+      latent_dim: 32
+      hidden_dims: [128, 64]
+      dropout: 0.2
+      lr: 0.001
+      weight_decay: 0.0001
+      epochs: 100
+      batch_size: 1024
+      patience: 15
+
+threshold:
+  type: percentile
+  value: 99.5
+
+evaluation:
+  metric: auroc
+  labeling: synthetic_injection
+  horizon: 1

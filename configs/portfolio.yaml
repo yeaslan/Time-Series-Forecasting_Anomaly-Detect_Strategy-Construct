@@ -1,0 +1,24 @@
+optimizer: hrp
+
+constraints:
+  net_exposure: 0.0
+  gross_max: 2.0
+  weight_cap: 0.02
+  sector_neutral: true
+  beta_neutral: true
+
+risk:
+  vol_target: 0.10
+  var95_limit: 0.05
+
+turnover_penalty: 0.001
+
+execution:
+  style: vwap
+  clips:
+    participation: 0.1
+    max_adv_ratio: 0.02
+  cost_model:
+    commission_bps: 0.3
+    impact_y: 0.2
+    slippage_bps: 1.0

@@ -1,0 +1,69 @@
+project:
+  name: quant_research_case_study
+  seed: 1337
+  device: auto
+  data_dir: data/processed
+  artifacts_dir: models/artifacts
+
+data:
+  freq: daily
+  lookback: 60
+  horizon: 1
+  universe: top1000
+  include_intraday: false
+  include_fundamentals: true
+  include_news: false
+  include_graph: true
+  synthetic: true
+
+features:
+  price: true
+  volume: true
+  technical: true
+  cross_sectional: true
+  fundamentals: true
+  news: false
+  graph: true
+
+targets:
+  returns:
+    enabled: true
+    threshold_percentile: 60
+  volatility:
+    enabled: true
+  regimes:
+    enabled: true
+
+training:
+  splitter: purged_kfold
+  k: 5
+  embargo_bars: 20
+  batch_size: 512
+  num_workers: 4
+  max_epochs: 100
+  early_stopping:
+    patience: 20
+    metric: val_loss
+    mode: min
+  optimizer:
+    name: adamw
+    lr: 0.001
+    weight_decay: 0.0005
+  scheduler:
+    name: cosine
+    warmup_epochs: 5
+
+logging:
+  level: INFO
+  mlflow: true
+  tensorboard: true
+
+backtest:
+  ranking: decile
+  sides: long_short
+  turnover_max: 0.3
+  vol_target: 0.1
+  costs:
+    commission_bps: 0.3
+    impact_Y: 0.2
+    slippage_bps: 1.0

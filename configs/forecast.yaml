@@ -1,0 +1,41 @@
+_base_: base.yaml
+
+data:
+  freq: daily
+  lookback: 60
+  horizon: 1
+  include_intraday: false
+
+model:
+  family: transformer
+  type: tft
+  d_model: 128
+  n_heads: 8
+  n_layers: 3
+  ff_dim: 512
+  dropout: 0.1
+  static_context: true
+  positional_embedding: learned
+
+train:
+  batch_size: 512
+  lr: 0.001
+  weight_decay: 0.0005
+  early_stopping:
+    patience: 20
+    metric: val_loss
+    mode: min
+
+cv:
+  scheme: purged_kfold
+  k: 5
+  embargo_bars: 20
+
+backtest:
+  ranking: decile
+  sides: long_short
+  turnover_max: 0.3
+  vol_target: 0.10
+  costs:
+    commission_bps: 0.3
+    impact_Y: 0.2
