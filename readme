@@ -19,4 +19,4 @@ Key Resources
 - Core library modules: `src/`
 - Generated artifacts (models, backtests): `models/artifacts/`, `reports/`
 
-The documentation file is formatted for seamless PDF export (e.g., via `pandoc reports/quant_case_study.md -o reports/quant_case_study.pdf`).
+The documentation file is formatted for PDF export (`pandoc reports/quant_case_study.md -o reports/quant_case_study.pdf`)
