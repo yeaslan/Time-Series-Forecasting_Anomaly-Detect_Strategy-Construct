@@ -1,0 +1,22 @@
+Quant Research Case Study
+=========================
+
+This repository implements a production-grade research workflow for liquid US equities that combines classical ML and modern deep learning techniques across forecasting, anomaly detection, and portfolio construction.
+
+Quick Start
+-----------
+
+```bash
+pip install -r requirements.txt
+python scripts/run_pipeline.py --config configs/forecast.yaml
+```
+
+Key Resources
+-------------
+
+- Full documentation: `reports/quant_case_study.md`
+- Configuration templates: `configs/`
+- Core library modules: `src/`
+- Generated artifacts (models, backtests): `models/artifacts/`, `reports/`
+
+The documentation file is formatted for seamless PDF export (e.g., via `pandoc reports/quant_case_study.md -o reports/quant_case_study.pdf`).
